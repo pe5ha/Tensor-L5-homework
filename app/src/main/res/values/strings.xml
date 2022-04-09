@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Tensor-L5-homework</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_sender_fragment">Sender Fragment</string>
+    <string name="sender_button">Send message</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="receiver_fragment_title">Receiver Fragment</string>
+    <string name="read_button">Read</string>
+    <string name="received_message_info">received message:</string>
+    <string name="messages_is_read_hint">All messages is read</string>
+</resources>
