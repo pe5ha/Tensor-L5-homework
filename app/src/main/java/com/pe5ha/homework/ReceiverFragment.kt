@@ -45,23 +45,15 @@ class ReceiverFragment : Fragment() {
         }
 
         // receiver text from bundle
-        viewModel.messageTextMutableLiveData.value = arguments?.getString(MESSAGE_TEXT_KEY)
+        // только если это создание фрагмента впервые, а не восстановление
+        if (savedInstanceState == null)
+            viewModel.messageTextMutableLiveData.value = arguments?.getString(MESSAGE_TEXT_KEY)
 
         // при нажатии кнопки данные сохраняются в вью модель в мутабл дата, а они в свою очередь триггерят изменение вью
         view.findViewById<Button>(R.id.receiver_read_button).setOnClickListener {
             viewModel.messageTextMutableLiveData.value = getString(R.string.messages_is_read_hint)
             viewModel.messageTextStyleMLD.value = Typeface.ITALIC
         }
-
-//        messageView.text = viewModel.messageTextLiveData.toString()
-//        messageView.setTypeface(messageView.typeface, viewModel.messageTextStyleLiveData.value!!)
-//
-//        messageText?.let { text -> messageView.text = text }
-
-//        view.findViewById<Button>(R.id.receiver_read_button).setOnClickListener {
-//            messageView.text = getString(R.string.messages_is_read_hint)
-//            messageView.setTypeface(messageView.typeface,Typeface.ITALIC)
-//        }
 
         return view
     }

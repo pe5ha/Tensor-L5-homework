@@ -12,7 +12,6 @@ import android.widget.Toast
 
 class SenderFragment : Fragment() {
 
-    private val MESSAGE_TEXT_KEY = "MESSAGE_TEXT_KEY"
     private lateinit var editText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,16 +36,6 @@ class SenderFragment : Fragment() {
                 .commit()
         }
         return view
-    }
-
-
-    private fun replaceFragment() {
-        //
-        // requireActivity().supportFragmentManager == parentFragmentManager ???
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_activity, ReceiverFragment())
-            .addToBackStack(null)
-            .commit()
     }
 
 }
