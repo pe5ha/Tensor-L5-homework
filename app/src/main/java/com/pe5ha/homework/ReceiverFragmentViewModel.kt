@@ -8,5 +8,4 @@ import androidx.lifecycle.ViewModel
 class ReceiverFragmentViewModel : ViewModel() {
     val messageTextMutableLiveData = MutableLiveData<String>()
     val messageTextStyleMLD = MutableLiveData<Int>(Typeface.BOLD)
-
 }

@@ -22,20 +22,18 @@ class ReceiverFragment : Fragment() {
             }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_receiver, container, false)
-        val messageView = view.findViewById<TextView>(R.id.messageText)
+        return view
+    }
 
-        // вью модель для хранения данных фрагмента
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val messageView = view.findViewById<TextView>(R.id.messageText)
         val viewModel = ViewModelProvider(this).get(ReceiverFragmentViewModel::class.java)
         viewModel.messageTextMutableLiveData.observe(viewLifecycleOwner) { text ->
             messageView.text = text
@@ -43,18 +41,11 @@ class ReceiverFragment : Fragment() {
         viewModel.messageTextStyleMLD.observe(viewLifecycleOwner) { style ->
             messageView.setTypeface(messageView.typeface, style)
         }
-
-        // receiver text from bundle
-        // только если это создание фрагмента впервые, а не восстановление
         if (savedInstanceState == null)
             viewModel.messageTextMutableLiveData.value = arguments?.getString(MESSAGE_TEXT_KEY)
-
-        // при нажатии кнопки данные сохраняются в вью модель в мутабл дата, а они в свою очередь триггерят изменение вью
         view.findViewById<Button>(R.id.receiver_read_button).setOnClickListener {
             viewModel.messageTextMutableLiveData.value = getString(R.string.messages_is_read_hint)
             viewModel.messageTextStyleMLD.value = Typeface.ITALIC
         }
-
-        return view
     }
 }
